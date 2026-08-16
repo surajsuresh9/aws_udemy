@@ -1,0 +1,8 @@
+AWS Cloudshell
+--------------
+AWS CloudShell is a browser-based, pre-authenticated terminal built directly into the AWS Management Console. It allows you to run AWS CLI commands and management scripts securely without installing any software or configuring API credentials on your local machine
+
+IAM Roles for Services
+-----------------------
+- Some AWS service will need to perform actions on your behalf
+- 
