@@ -72,7 +72,7 @@ Memory Optimized
 		
 Storage Optimized
 ------------------
-- Great for storage-intensive tasks that require high, sequential read and writw access to large data sets on local storage
+- Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage
 - Use cases:
 	- High frequency online transaction processing (OLTP) systems
 	- Relational & NoSQL databases
@@ -83,3 +83,31 @@ Storage Optimized
 	
 Security Groups	
 ---------------
+- An AWS Security Group acts as a virtual firewall. It controls incoming and outgoing traffic for your cloud resources, like virtual servers, at the instance level.
+- Security Groups are teh fundamental of n/w security in AWS
+- They control how traffic is allowed into our ot out of our EC2 instances
+- Security groups only contain allow rules
+- Security groups can reference by IP or by security group
+- Security groups are acting as a 'firewall' on EC2 instances
+- They regulate:
+	- Access to ports
+	- Authorized IP ranges - IPv4 and IPv6
+	- Control of inbound network (from outside to the instance)
+	- Control of outbound network (from instance to the outside)
+- They can be attached to multiple instances
+- Locked down to a region/ VPC combination
+- Does live outside "the EC2" - if traffic is blocked the Ec2 instance won;t see it
+- Its good to maintain one separate security group for SSh access
+- If your application is not accessible (time out), then its a security group issue
+- If your application gives a "connection refused" error, then its an application error or its not launched
+- All inbound traffic is blocked by default
+- All outbound traffic is authorized by default
+ 
+Classic Ports
+-------------
+22 - SSH - (Secure Shell)- log in to Linux instance	
+21 - FTP - 	(File Transfer Protocol) - upload files into a file share
+22 - SFTP - (Secure File Transfer Protocol) - upload files using SSH 
+80 - HTTP - access unsecured websites	
+443 - HTTPS - access secured websites	
+3389 - RDP (Remote Desktop Protocol) - log in to remote Windows instance	
