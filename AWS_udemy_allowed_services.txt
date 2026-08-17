@@ -1,0 +1,139 @@
+AWS Services
+------------
+ANALYTICS
+----------
+· AWS Glue
+· Amazon Athena
+· Amazon CloudSearch
+· Amazon EMR (Elastic MapReduce)
+· Amazon Kinesis
+· Amazon OpenSearch Service
+· Amazon QuickSight
+· Amazon Redshift
+
+APPLICATION INTEGRATION
+-----------------------
+· Amazon EventBridge
+· Amazon MQ
+· Amazon Simple Notification Service (SNS)
+· Amazon Simple Queue Service (SQS)
+· Amazon Simple Workflow Service (SWF)
+
+BUSINESS APPLICATIONS
+---------------------
+· AWS AppFabric
+· Amazon WorkDocs
+· Amazon Simple Email Service (SES)
+
+DATABASES
+---------
+· Amazon DynamoDB
+· Amazon DynamoDB Accelerator (DAX)
+· Amazon ElastiCache
+· Amazon Keyspaces (for Apache Cassandra)
+· Amazon Neptune
+· Amazon RDS
+
+COMPUTE
+-------
+· AWS App Runner
+· AWS Lambda
+· AWS Serverless Application Repository
+· Amazon EC2
+
+CONTAINERS
+-----------
+· Amazon Elastic Container Registry (ECR)
+· Amazon Elastic Container Service (ECS)
+· Amazon Elastic Kubernetes Service (EKS)
+
+DEVELOPER TOOLS
+---------------
+· AWS Cloud9
+· AWS CodeBuild
+· AWS CodeCommit
+· AWS CodeDeploy
+· AWS CodePipeline
+· AWS X-Ray
+· Amazon CodeCatalyst
+· AWS Kiro
+
+MACHINE LEARNING
+----------------
+· Amazon Bedrock (Meta, Mistral AI, and Amazon FM)
+· Amazon Comprehend
+· Amazon Lex
+· Amazon Polly
+· Amazon Q
+· Amazon SageMaker
+· Amazon Transcribe
+· Amazon Translate
+· Managed MLflow on Amazon SageMaker
+· Amazon Bedrock AgentCore
+
+NETWORKING & CONTENT DELIVERY
+-----------------------------
+· Amazon API Gateway
+· Amazon CloudFront
+· Amazon Route 53
+· Amazon Route 53 Resolver
+
+MIGRATION & TRANSFER
+--------------------
+· AWS Snowball
+· AWS Server Migration Service (SMS)
+· Migration Hub (MGH)
+· Database Migration Service (DMS)
+· AWS Transform
+
+MANAGEMENT & GOVERNANCE
+-----------------------
+· AWS CloudFormation
+· AWS CloudTrail
+· AWS Compute Optimizer
+· AWS Config
+· AWS Health Dashboard
+· AWS License Manager
+· AWS Organizations
+· AWS Service Catalog
+· AWS Systems Manager
+· AWS Trusted Advisor
+· AWS Well-Architected Tool
+· Amazon CloudWatch
+· AWS OpsWorks
+· AWS Auto Scaling
+
+SECURITY, IDENTITY, & COMPLIANCE
+--------------------------------
+· AWS Artifact
+· Acm
+· AWS Certificate Manager
+· AWS CloudHSM
+· AWS Key Management Service (KMS)
+· AWS Network Firewall
+· AWS Private Certificate Authority
+· AWS Resource Access Manager (RAM)
+· AWS Secrets Manager
+· AWS Security Hub
+· AWS Shield
+· AWS WAF
+· Amazon Cognito
+· Amazon Detective
+· Amazon GuardDuty
+· Amazon Inspector
+· Amazon Macie
+· Amazon Security Lake
+· AWS Security Agent
+
+STORAGE
+-------
+· AWS Backup
+· AWS Storage Gateway
+· Amazon EFS (Elastic File System)
+· Amazon S3
+· Amazon S3 Glacier
+
+FRONT-END WEB & MOBILE
+----------------------
+· AWS Amplify
+
