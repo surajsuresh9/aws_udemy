@@ -1,0 +1,85 @@
+EC2
+---
+- EC2 = Elastic Compute Cloud = Infrastructure as a Service
+- It mainly consists of 
+	- Renting virtual machines (EC2)
+	- Storing data on virtual frives (EBS)
+	- Distributing load across machines (ELB)
+	- Scaling the services usin an auto-scaling group (ASG)
+	
+EC2 sizing and configuration options
+------------------------------------
+- Operating system (OS): Linux, Windows, Mac OS
+- How much compute power (CPU)
+- How much random access memory (RAM)
+- How much storage space: 
+	- Network attached (EBS, EFS)
+	- hardware (EC2 Instance storage)
+- Network speed: speed of the card, Public IP address	
+- Firewall rules: security group
+- Boostrap script (Configure at first launch): EC2 User Data
+
+EC2 User Data
+--------------
+- It is possible to bootstrap our instances using an EC2 User data script
+- Bootstrapping means launching commands when a machine starts
+- The script is only run once at the instance first start
+- EC2 User data is used to automate boot tasks such as:
+	- Installing update
+	- Installing software
+	- Downloading common files from the internet
+- The EC2 User Data Script runs with the root user
+
+EC2 Instance Types
+------------------
+- There are different types of EC2 instances that are optimized for different use cases
+- Naming convention:
+	
+	m5.2xlarge
+	
+	m: instance class
+	5: generation (AWS improves them over time)
+	2xlarge: sizes within the instance class (bigger the size, more CPU, more memory)
+
+General Purpose
+---------------
+- great for a diversity of workloads such as web servers or code repositories
+- balance between
+	- Compute
+	- Memory
+	- Networking
+	
+Compute Optimized
+------------------
+- great for compute intensive tasks that require high performance processors:
+		- Batch processing workloads
+		- Mediat transcoding
+		- High performance web servers
+		- High performance computing (HPC)
+		- scientific modeling & machine learning
+		- dedicated gaming servers
+		- C series
+
+Memory Optimized
+----------------
+- fast performance for workloads that process large data sets in memory
+- use cases
+	- high performance, relational/ non-relational databases
+	- distributed web cache stores
+	- in-memory databases optimized for BI (business intelligence)
+	- applications performing real-time processing of big unstructured data
+	- R series
+		
+Storage Optimized
+------------------
+- Great for storage-intensive tasks that require high, sequential read and writw access to large data sets on local storage
+- Use cases:
+	- High frequency online transaction processing (OLTP) systems
+	- Relational & NoSQL databases
+	- Cache for in-memory databases (e.g: Redis)
+	- Data warehousing applications
+	- Distributed file systems
+	- I, D, H1
+	
+Security Groups	
+---------------
