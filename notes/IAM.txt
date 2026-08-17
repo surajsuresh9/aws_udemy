@@ -1,3 +1,50 @@
+IAM (Identity and Access Management)
+-------------------------------------
+- global setting
+- Root account, created by default
+- users are people within the org, can be grouped
+- groups contain users, not other groups
+- users don't have to belong to a group, user can belong to multiple groups
+
+IAM - Permissions
+-----------------
+- users or groups can be assigned JSON document called policies
+- policies define permissions
+
+Policy Inheritance
+-------------------
+group policies aplly to all users
+users can inherit multiple policies if they're in multiple groups
+
+Policy Structure
+----------------
+version: 
+	policy language version, always include 2012-10-17
+id: 
+	an identifier for the policy (optional)
+statement: (contains 1 or more individual statements - required)	
+	sid:
+		an id for the statement (optional)
+	effect:
+		whethre the statemnt allow por denies access (Allow, Deny)
+	principal:
+		account/ user/ role to which this policy applies
+	action:
+		list of actions this policy allows or denies
+	resource:
+		list of resources to which the actions applied to
+	condition:
+		conditions for when this policy is in effect (optional)
+		
+How users access AWS
+--------------------
+AWS Management Console
+AWS Command Line Interface CLI
+AWS Software Development Kit SDK
+
+Access Key ID - username
+Secret Access key - password
+
 AWS Cloudshell
 --------------
 - AWS CloudShell is a browser-based, pre-authenticated terminal built directly into the AWS Management Console. It allows you to run AWS CLI commands and management scripts securely without installing any software or configuring API credentials on your local machine
