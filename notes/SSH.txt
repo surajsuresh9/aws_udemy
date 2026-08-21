@@ -1,0 +1,106 @@
+SSH
+---
+Mac - SSH, EC2 Instance Connect
+Linux - SSH, EC2 Instance Connect
+Windows > 10 - SSH, PuTTY, EC2 Instance Connect
+Windows <= 10 - PuTTY, EC2 Instance Connect
+
+- port 22
+- SSH used to login to EC2 instances
+- used to control a remote machine, all using the cmd line
+- pem file
+
+ssh ec2-user@ip_address
+Default User: ec2-user
+
+go to directory of PEM file, then auth will work
+
+ssh -i PEM_file ec2-user@ip_address
+
+
+Troubleshooting
+---------------
+- There's a connection timeout
+	- This is a security group issue. Any timeout (not just for SSH) is related to security groups or a firewall. 
+
+- There's still a connection timeout issue
+	- If your security group is properly configured, and you still have connection timeout issues, then that means a corporate firewall or a personal firewall is blocking the connection.
+	- Use EC2 Instance Connect
+
+- There's a connection refused
+	- This means the instance is reachable, but no SSH utility is running on the instance
+	- Try to restart the instance
+	- If it doesn't work, terminate the instance and create a new one. Make sure you're using Amazon Linux 2
+	
+	
+EC2 Instance Connect
+--------------------
+alternative to SSH, from AWS UI itself, cloud CLI for EC2 control
+
+Note:
+Provide AWS credentials to EC2 instances ONLY through IAM Roles
+
+Pricing Options
+---------------
+On-demand instances:
+	- short workload, predictable pricing, pay by second
+
+Reserved (1 & 3 yrs)
+	- Reserved instances - long workloads	
+	- Convertible Reserved instances - long workloads with flexible instances
+
+Savings Plans (1 & 3 yrs)
+	- committment to an amount of usage, long workload
+
+Spot Instances
+	- short workloads, cheap, can lose instances (less relaible)
+
+Dedicated Hosts
+	- book an entire physical server; control instance placement
+	
+Dedicated Instances
+	- no other customer will share your hardware
+
+Capacity Reservations
+	- reserve capacity in a specific AZ for any duration
+	
+EC2 On Demand
+-------------
+Pay for what you use:
+	Linux or Windows - billing per second, after the first minute
+	All other OS - billing per hr
+	
+Has the higest cost burt no upfront payment
+No long term commitment	
+Recommended for short-term and un-interrupted workloads,w here you can't predict how the application will behave
+
+Shared responsibility
+---------------------
+AWS
+---
+Infrastructure (global n/w security)
+Isolation on physical hosts
+Replacing faulty hardware
+Compliance validation
+
+User
+----
+Security Groups rules
+Operating-system patches and updates
+Software and utilities installed on teh Ec2 instance
+IAM Roles assigned to EC2 & IAM user access management
+Data security on your instance
+
+EC2 Summary
+-----------
+- EC2 Instance: AMI (OS) + Instance size (CPU+RAM) + Storage + security groups + EC2 User Data
+
+- Security Groups: Firewall attached to the EC2 instance
+
+- EC2 User Data: Script launched at the first start of an instance
+
+- SSH: start a terminal into our EC2 Instance (port 22)
+
+- EC2 Instance Roles: Link to IAM
+
+- Purchasing Options: On-Demand, Spot, Reserved (Standard+ Convertible), Dedicated Host, Dedicated Instance

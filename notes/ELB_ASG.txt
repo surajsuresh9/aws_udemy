@@ -1,0 +1,130 @@
+ELB & ASG	
+----------
+Scalability & High Availability
+--------------------------------
+- scalability means that an app can hadnle greater loads by adapting
+- there are 2 kinds of scalability:
+	- vertical scalability
+	- horizontal scalability (elasticity)
+	
+- scalability is linked but different to High Availability
+
+Vertical Scalability
+--------------------
+- Vertical Scalability meaning increasing the size of the instance
+- For e.g: scaling up from t2.micro to t2.large
+- vertical scalability is very common for non distributed systems like databases
+- there's a limit to how much you can veritcall scale (hardware limit)
+
+Horizontal Scalability
+----------------------
+- Horizontal Scalability means increasing the number of instances/ systems for your app
+- Horizontal scaling implies distributed systems
+- This is very common for web apps/ modern apps/
+- It's easy to horizontally scalte thanks to the cloud offerings like Amazon EC2
+
+High Availability
+-----------------
+- High Availability usually goes hand in hand with horizontal scaling
+- High availabilty means running your app in at least 2 AZs
+- The goal of high availablity is to survive a data center loss (disaster)
+
+High Availability & Scalability for EC2
+---------------------------------------
+- Vertical Scaling: increase instance size (scalue up / down)
+	- from: t2.nano - 0.5G of RAM, 1 vCPU
+	- to: u-12tbl.metal - 12.3 TB of RAM, 448 vCPUs
+
+- Horizontal Scaling: increase number of instances (=scale out/ in)
+	- Auto Scaling Group
+	- Load Balancer
+
+- High Availability:
+	run instances for the same application across multi AZs
+	- Auto Scaling Group : multi AZ
+	- Load Balancer : multi AZ
+
+
+Scalability vs Elasticity (vs Agility)
+---------------------------------------
+Scalability:
+	- ability to accomodate a lareg load by making the hardware stronger (scale up) or by adding nodes (scale out)	
+
+Elasticity:
+	- once a system is scalable, elasticity means that there eill be some auto scaling, so that the system can scale based on the load. This is 'cloud-friednlt'; pay per use, match demand, optimize costs
+
+Agility: (not related to scalability)
+	- new IT resources are only a click away, which means taht you reduce the time to make those resources available to your developers from weeks to just minutes
+
+ELB - Elastic Load Balancing 
+-----------------------------
+What is load balancing?
+-----------------------
+- Load balancers are servers taht forward internet traffic to multiple server (EC2 instances) downstream
+
+Why use Load Balancer?
+-----------------------
+- Spread load across mulitple downstream instances
+- expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances
+- Do regular health checks to your instances
+- Provide SSL termination (HTTPS) for your websites
+- High availabilty across zones
+
+Why use an Elastic Load Balancer?
+---------------------------------
+- An ELB is a managed load balancers
+	- AWS guarantees that it will be working
+	- AWS takes care of upgrades, maintenance, high availability
+	- AWS provides only a few configuration knobs
+- It costs less to setup your own load balancer but ut will be a lot more effort on your end (manitenance, integrations)
+- 4 kinds of load balancers
+	- Application Load Balancer (HHTP/HTTPS) - Layer 7
+	- Network Load Balancer (ultra-high performance, allow for TCP) - Layer 4
+	- Gateway Load Balancer - Layer 3
+	- Classic Load Balancer (ret'd in 2023)
+
+Auto Scaling Groups
+-------------------
+What is an Auto Scaling Group?
+-----------------------------
+- In real-life, the load on your websites and apps change quickly
+- In the cloud, you can create and gte rid of servers very quickly
+- The goal of an ASG is to:
+	- Scale out (add EC2 instances) to match an increased load
+	- Scale in (remove EC2 instances) to match a decreased load
+	- Ensure we have a minimum and  a maximum number of machines running
+	- Automatically register new instances to a load balancer
+	- Replace unhealhty instances
+- Cost Savings:
+	- only run at an optimal capacity (principle of the cloud) 
+	
+ASG Strategies
+--------------
+- Manual Scaling: Update the size of an ASG manually
+- Dynamic Scaling: Respond to changing demand
+	- Simple/ Step Scaling:
+		- When a CloudWatch alarm is triggered (e.g CPU>70%) then add 2 units
+		- When a CloudWatch alarm is triggered (e.g CPU<30%) then remove 1
+	- Target Tracking Scaling:	
+		- E.g: I want the avaerage ASG CPU to stay around 40%
+	- Scheduled Scaling:
+		- Anticipate a scaling based on known usage patterns
+		- E.g: increase the min capacity to 10 at 5pm on Fridays
+	- Predictive Scaling:
+		- uses Machine Learning to predict future traffic ahead of time
+		- automatically provisions teh right numbers of EC2 instances in advance
+- Useful when your load has predictable time-bsaed patterns
+
+ELB & ASG - Summary
+--------------------
+- High Availability vs Scalability (vertical vs horizontal) vs Elasticity vs Agility in the cloud
+- Elastic Load Balancer
+	- Distribute traffic acrsoo backedn EC2 instances, can be multi-AZ
+	- Supports health checks
+	- 4 types- classic (old), application (HTTP-L7), network (TCP-14), gateway (l3)
+- Auto Scaling Groups (ASG)
+	- implement elasticty for your application, across multiple AZ
+	- scale EC2 instances based on teh demand on your system, replace unhealthy ones
+	- integrated with ELB
+	

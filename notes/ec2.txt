@@ -111,3 +111,171 @@ Classic Ports
 80 - HTTP - access unsecured websites	
 443 - HTTPS - access secured websites	
 3389 - RDP (Remote Desktop Protocol) - log in to remote Windows instance	
+
+
+Storage Options for EC2 Instances
+----------------------------------
+EBS Volume
+----------
+- EBS-Elastic Block Store Volume is a n/w drive you can attacj to your instances while they run
+- It allows your instances to persist data,even after their termination
+- They can only be mounted to one instance at a time 
+- They are bound to a specific availability zone
+- Analogy: Think of them as network USB stick
+
+- It is a n/w drive(not a physical drive)
+	- It uses n/w to communictae with the instcane, which means there might be a bot of latency
+	- It can be detached from an EC2 instance and attached to another one quickly
+
+- Its locked to an Availability ZOne 
+	- AN EBS volume in us-east-1a cannot be attached to us-east-1b
+	- To move a volume across, you first need to snapshot it
+
+- Have a provisonal capacity (size in GBs, and IOPS)
+	- You get billed for all the provisioned capacity
+	- You can increase the capacity of the drive over time
+	
+EBS-Delete on termination attribute
+-----------------------------------
+- Controls the EBS behavior when an EC2 instance is terminates
+	- By default, the root EBS volume is deleted (attribute enabled)
+	- By default, any other attached EBS volume is not attached (attribute disabled)
+Use case: preserve root volume when instance is terminated	
+
+EBS Snapshots
+-------------
+- Make a backup (snapshot) of your EBS volume ar a point in time
+- Not necessary to detach volumen to do snapshot, but recommended
+- Can copy snapshots across AZ or Region
+
+Features
+--------
+- EBS Snapshot Archive
+	- Move a Snapshot to an "arvhice tire" that is 75% cheaper
+	- Takes within 24 hrs to 72 hrs foe restoring the archive
+	
+- Recycle Bin for EBS Snapshots
+	- Setup rules to retain deleted snapshots so you can recover them on accidental deletion
+	- Specify retention (from 1 day to 1 year)
+	
+AMI
+---
+- AMI = Amazon Machine Image
+- AMI are a customziation of an EC2 Instance
+	- You add your own software, configuration, operating system, monitoring
+	- Faster boot/ configuration time because all your software is pre-packaged
+- AMI are built for a specific region (and can be copied across)
+- You can launch EC2 instances from
+	- A public AMI: AWS provided
+	- Your own AMI: you make and maintain them yourself
+	- An AWS Marketplace AMI: an AMI someone else made (and potentially sells)
+
+AMI Process (from an EC2 Instance)
+-----------------------------------
+- Start an EC2 instance and customize it
+- Stop the instance (for data integrity)
+- Build an AMI - this will also create EBS snapshots)
+- Launch instances from other AMIs	
+
+EC2 Image Builder
+-----------------
+- Used to automate teh creation of Virtual Machines or container images
+- Automate the creation, maintenance, validation and testing of Ec2 AMIs
+- Can be tun on a schedule (weekly, whenever packages update)
+- Free service (only pay for the underlying sresources)
+
+
+EC2 Instance Store
+------------------
+- EBS volumes are network drives with good but "limited" performance
+- If you need a high-performance hardware disk, use EC2 Instance Store
+- Better I/O performance
+- EC2 Instance Store lose their storage if they're stopped (ephemeral)
+- Good for buffer/ cache/ scratch data/ temporary content
+- Risk of data loss if hardware fails
+- Backups and Replication are your responsibility
+
+EFS
+---
+- EFS-Elastic File System
+- Managed NFS (n/w file system) that can be mounted in 100s of EC2
+- EFS works with Linux EC2 instances in multi-AZ
+- Highly available, scalable, expensive (3xgp2), pay per use, no capacity planning
+
+EFS-IA
+------
+- Storage class that is cost-optimized for files not accessed everyday
+- Up to 92% lower cost compared to EFS standard
+- EFS will automatically move your files to EFS-IA based on the last time they were accessed
+- Enable EFS-IA with Lifecycle Policy
+- Example: move files that are mot accessed for 60 days to EFS-IA
+- Transaparent to the application accessing EFS
+
+
+Shared Responsibility for EC2 Storage
+--------------------------------------
+AWS
+---
+- infrastructure
+- replication for data for EBS volumes & EFS drives
+- replcaing faulty hardware
+- ensuring their employees cannot access your data
+
+User
+----
+- setting up backup/ snapshot procedures
+- setting up data encrytption
+- responsibility for any data on the drive
+- understanding the risk of usign EC2 Instance Store
+
+Amazon FSx
+----------
+- Launch 3rd party high-performance file system on AWS
+- Fully managed service
+- FSx for Lustre, FSx for Windows File Server, FSx NetApp ONTAP
+
+FSx for Windows File Server
+---------------------------
+- a fully managed, highly reliable and scalable Windows native shared file system
+- Built on Windows File Server
+- Supports SMB protocol & Windows NTFS
+- Integrated with Microsoft Active Directory
+- Can be accessed from AWS or your on-premise infrastructure
+
+
+Amazon FSx for Lustre
+----------------------
+- A fully managed, high-performance, scalable file storage for High Performace Computing (HPC)
+- The name Lustre is derived from 'Linux' and 'cluster'
+- machine Learning, Analytics, Video Processign, Financial Modelling
+- Scales upto 100 GB/s, millions of IOPS, sub-ms latencies
+
+EC2 Instance Storage - Summary
+-------------------------------
+EBS volumes:
+	- n/w drives attached to 1 EC2 instance at a time
+	- mapped to an AZ
+	- can use EBS snapshots for backups/ transferring EBS volumes across AZs
+
+AMI:
+	- create ready to use imagesEC2 instances with customizations
+
+EC2 Image Builder:
+	- automatically build, test and distribute AMIs
+
+EC2 Instance Store:
+	- high performance hadrware disk attached to our EC2 instance
+	- Lost if instance is stopped/ terminated
+
+EFS:
+	- n/w file system, can be attached to 100s of instances ina region	
+
+EFS-IA:
+	- cost optimized storage class for infrequent accessed files
+
+FSx for	Windows:
+	- n/w file system for windows servers
+
+FSx for	Lustre:
+	- hight performance computing Linux file system
+	
